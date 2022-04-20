@@ -8,7 +8,8 @@
  * @param numbers int整型一维数组 
  * @return int整型
  */
-// map
+
+// map 时间复杂度O(N),空间复杂度O(N)
 function duplicate( numbers ) {
   const map = new Map();
   const len = numbers.length;
@@ -23,7 +24,7 @@ function duplicate( numbers ) {
   }
 }
 
-// set
+// set 时间复杂度O(N),空间复杂度O(N)
 function duplicate1( numbers ) {
   const set = new Set();
   const len = numbers.length;
@@ -37,9 +38,8 @@ function duplicate1( numbers ) {
   }
 }
 
-// 先排序，判断是否相同
+// 先排序，判断是否相同 排序时间复杂度nlogn + 循环n => 时间复杂度O(nlog(n)),空间复杂度O(1)
 function duplicate2( numbers ) {
-  const set = new Set();
   const len = numbers.length;
   if(len <= 0) return -1;
   numbers.sort((a, b) => a - b);
@@ -47,5 +47,18 @@ function duplicate2( numbers ) {
      if(numbers[i] === numbers[i - 1]){
          return numbers[i];
      }
+  }
+}
+
+// 将数值和下标对应起来（numbers[i]不能存起来，因为要使用引用地址 时间复杂度O(N),空间复杂度O(1)
+function duplicate3( numbers ) { 
+  const len = numbers.length;
+  if (len <= 0) return -1;
+
+  for (let i = 0; i < len; i++){
+    while (numbers[i] !== i) {
+      if (numbers[numbers[i]] === numbers[i]) return numbers[i];
+      [numbers[numbers[i]], numbers[i]] = [numbers[i], numbers[numbers[i]]];
+    }
   }
 }
