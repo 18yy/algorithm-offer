@@ -1,22 +1,22 @@
-// /**
-//  * @param {string} s
-//  * @return {character}
-//  */
-//  var firstUniqChar = function(s) {
-//     if(s.length === 0) return ' ';
-//     for(let char of s) {
-//         if(s.indexOf(char) === s.lastIndexOf(char)){
-//             return char;
-//         }
-//     }
-//     return ' ';
-// };
-
 /**
  * @param {string} s
  * @return {character}
  */
  var firstUniqChar = function(s) {
+    if(s.length === 0) return ' ';
+    for(let char of s) {
+        if(s.indexOf(char) === s.lastIndexOf(char)){
+            return char;
+        }
+    }
+    return ' ';
+};
+
+/**
+ * @param {string} s
+ * @return {character}
+ */
+ var firstUniqChar2 = function(s) {
     if(s.length === 0) return ' ';
     const map = new Map();
     for(let char of s) {
@@ -27,12 +27,13 @@
         }
     }
 
-    map.forEach((val, key) => {
-        console.log(val, key)
-        if(val == 1){
-            return key;
+    for(let [key, val] of map.entries()){
+        if(val === 1){
+            return key
         }
-    })
+    }
     return ' ';
 };
-firstUniqChar("leetcode")
+
+// map的遍历方法
+
