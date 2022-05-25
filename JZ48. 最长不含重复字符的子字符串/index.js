@@ -2,6 +2,7 @@
  * @param {string} s
  * @return {number}
  */
+// 滑动窗口做法
  var lengthOfLongestSubstring = function(s) {
   let l = 0;
   let map = new Map();
@@ -15,4 +16,6 @@
       map.set(s[r], r);
   }
   return res;
-};
+ };
+
+ // 动态规划做法，todo
